@@ -410,9 +410,21 @@
 
 /* troisième acte — effet pixelisé */
 .saison-info h3.troisieme-acte {
-  font-family: 'Alte Haas Grotesk', sans-serif;
   image-rendering: pixelated;
   filter: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1'/><feDisplacementMap in='SourceGraphic' scale='2'/></filter></svg>#p");
+  font-family: 'Alte Haas Grotesk', sans-serif !important;
+  position: relative;
+  animation: glitch-text 2s infinite ease-in-out !important;
+}
+
+
+@keyframes glitch-text {
+  0%   { text-shadow: none; transform: none; }
+  20%  { text-shadow: -2px 0 #ff0000, 2px 0 #00ff00; transform: translateX(-1px); }
+  40%  { text-shadow: 2px 0 #0000ff, -2px 0 #ff0000; transform: translateX(1px); }
+  60%  { text-shadow: -1px 0 #00ff00, 1px 0 #0000ff; transform: translateX(-1px); }
+  80%  { text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; transform: translateX(2px); }
+  100% { text-shadow: none; transform: none; }
 }
 
   </style>
