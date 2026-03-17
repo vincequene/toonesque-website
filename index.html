@@ -28,6 +28,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Franklin:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Fredoka:wght@300;400;600&display=swap" rel="stylesheet">
 
 
 
@@ -230,33 +231,82 @@ nav::after {
     }
 
     .hero h1 {
-      font-size: clamp(1rem, 3vw, 1.3rem);
-      font-weight: 400;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      margin-bottom: 1rem;
-      font-family: 'Alte Haas Grotesk', sans-serif;
-    }
+  font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  margin-bottom: 0.3rem;
+   font-family: 'Fredoka', sans-serif;
+  font-weight: 300;
+   text-shadow:
+    2px 4px 8px rgba(0,0,0,0.6),
+    0 0 30px rgba(147,51,234,0.3);
+}
 
-    .hero h1 strong {
-      color: var(--text);
-      font-weight: 700;
-    }
+.hero h1 strong {
+  display: block;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+    font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+   text-shadow:
+ 3px 6px 12px rgba(0,0,0,0.7),
+    0 0 50px rgba(147,51,234,0.4),
+    0 0 100px rgba(147,51,234,0.15);
+}
+
+.hero-ctas {
+  margin-top: 2.5rem;
+}
 
     .hero .badge {
       display: inline-block;
       background: rgba(147,51,234,0.15);
       border: 1px solid rgba(147,51,234,0.4);
       color: var(--purple);
-      font-size: 0.8rem;
+      font-size: 1.2rem;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      padding: 0.3rem 0.9rem;
+      padding: 0.4rem 1.2rem;
       border-radius: 20px;
       margin-bottom: 2.5rem;
     }
+
+    .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(147, 51, 234, 0.15);
+  border: 1px solid rgba(147, 51, 234, 0.4);
+  color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+}
+
+.badge-dot {
+  display: inline-block;
+  min-width: 8px;
+  min-height: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #9333EA;
+  flex-shrink: 0;
+  animation: onair 2.5s ease-in-out infinite;
+}
+
+@keyframes onair {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.15; }
+}
+
 
     .hero-ctas {
       display: flex;
@@ -433,7 +483,10 @@ nav::after {
   <!-- HERO -->
   <div class="hero">
     <img src="logoc.png" alt="toonesque" class="logo-img tilt-card">
-    <div class="badge">Troisième acte — en cours</div>
+    <div class="badge">
+  <span class="badge-dot"></span>
+  Troisième Acte — En cours
+</div>
     <h1>Du cartoonesque sous toutes ses formes.<br><strong>Avec soin et légèreté.</strong></h1>
     <div class="hero-ctas">
       <a href="https://youtube.com/toonesque" target="_blank" class="btn-primary">
