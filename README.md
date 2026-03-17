@@ -21,7 +21,7 @@ Landing page statique pour toonesque., un média qui fait des émissions sur tou
 
 ## Structure
 
-toonesque-website/
+```toonesque-website/
 ├── index.html
 ├── about.html
 ├── favicon.ico
@@ -31,9 +31,7 @@ toonesque-website/
 └── fonts/
   ├── AlteHaasGroteskBold.woff2
   └── AlteHaasGroteskRegular.woff2
-
-text
-
+```
 ## Notes
 
 - Le fond s'assombrit au scroll via un `--scroll-dark` CSS custom property
