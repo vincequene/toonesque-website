@@ -1,60 +1,632 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:og="http://ogp.me/ns#">
-
+<html lang="fr">
 <head>
-  <title>toonesque.</title>
   <meta charset="UTF-8">
-  <meta name="keywords" content="toonesque.">
-  <meta name="language" content="French">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:locale" content="fr_FR" />
-  <meta property="og:site_name" content="toonesque." />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary" />
-  <link href="newhouse.css" rel="stylesheet" type="text/css">
-  <meta name="theme-color" content="#000000">
-  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="msapplication-TileColor" content="#000000">
-  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-  <link rel="preconnect" href="https://rsms.me/">
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <title>toonesque.</title>
+  <meta name="description" content="Du cartoonesque sous toutes ses formes. Avec soin et légèreté.">
+  <meta name="theme-color" content="#9333EA">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://toonesque.com">
+  <meta property="og:title" content="toonesque.">
+  <meta property="og:description" content="Du cartoonesque sous toutes ses formes. Avec soin et légèreté.">
+  <meta property="og:image" content="https://toonesque.com/og.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@toonesque">
+  <meta name="twitter:title" content="toonesque.">
+  <meta name="twitter:description" content="Du cartoonesque sous toutes ses formes. Avec soin et légèreté.">
+  <meta name="twitter:image" content="https://toonesque.com/og.png">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/favicon-512.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Franklin:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Fredoka:wght@300;400;600&display=swap" rel="stylesheet">
+
+
+
   <style>
-  @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap');
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+    @font-face {
+    font-family: 'Alte Haas Grotesk';
+    src: url('/fonts/AlteHaasGroteskBold.woff2') format('woff2');
+   font-weight: 700;
+    }
+  @font-face {
+  font-family: 'Alte Haas Grotesk';
+  src: url('/fonts/AlteHaasGroteskRegular.woff2') format('woff2');
+  font-weight: 400;
+    }
+
+
+    :root {
+      --purple: #9333EA;
+      --purple-dim: #6B21A8;
+      --bg: #4C1D95;
+      --bg2: #3b1278;
+      --text: #f0f0f0;
+      --muted: #666;
+      --border: #6d28d9;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #5B21B6;
+      background-image:
+  radial-gradient(ellipse at center, rgba(90,30,200,0.6) 0%, rgba(60,0,160,0.95) 100%),
+    radial-gradient(circle, rgba(255,255,255,0.25) 1.5px, transparent 1.5px);
+     background-size: cover, 12px 12px;
+     color: var(--text);
+     font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif;
+     line-height: 1.6;
+     animation: halftoneShift 4s infinite linear;
+    }
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--scroll-dark, rgba(0,0,0,0));
+  pointer-events: none;
+  z-index: 0;
+  transition: background 0.1s;
+}
+
+body::before {
+  transform: translateY(var(--parallax-y, 0));
+}
+
+nav, .hero, section, footer {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes halftoneShift {
+  0%   { background-position: 0% 0%, 0 0; }
+  100% { background-position: 0% 0%, 12px 12px; }
+}
+
+nav .logo, h1, h2 {
+  font-family: 'Alte Haas Grotesk', sans-serif;
+    }
+
+.section-label {
+  font-family: 'Libre Franklin', sans-serif;
+    }
+
+
+    /* NAV */
+    nav {
+      position: fixed;
+      overflow: visible;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+       background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+  nav .logo {
+  font-family: 'Alte Haas Grotesk', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-decoration: none;
+  animation: glitch 3s infinite ease-in-out;
+}
+
+@keyframes glitch {
+  0%   { text-shadow: -1px 0 #ff0000, 1px 0 #00ff00, 0 1px #0000ff; }
+  25%  { text-shadow:  1px 0 #ff0000, 0 1px #00ff00, -1px 0 #0000ff; }
+  50%  { text-shadow:  0 1px #ff0000, -1px 0 #00ff00, 1px 0 #0000ff; }
+  75%  { text-shadow: -1px 1px #ff0000, 1px -1px #00ff00, 0 0 #0000ff; }
+  100% { text-shadow: -1px 0 #ff0000, 1px 0 #00ff00, 0 1px #0000ff; }
+}
+
+
+nav .logo span {
+  color: #fff;
+}
+
+
+nav a.cta {
+  background: rgba(147, 51, 234, 0.5);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.45rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.2s;
+  backdrop-filter: blur(8px);
+}
+
+nav a.cta:hover {
+  background: rgba(147, 51, 234, 0.75);
+}
+
+nav a.cta-secondary {
+  background: transparent;
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.45rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+nav a.cta-secondary:hover {
+  color: var(--purple);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+nav::after {
+  content: '';
+  position: absolute;
+  bottom: -24px;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent);
+  pointer-events: none;
+}
+
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(147,51,234,0.15) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero img.logo-img {
+  width: min(520px, 85vw); /* était 340px */
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 0 60px rgba(147,51,234,0.4));
+  animation: float 6s ease-in-out infinite;
+}
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero h1 {
+  font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  margin-bottom: 0.3rem;
+   font-family: 'Fredoka', sans-serif;
+  font-weight: 300;
+   text-shadow:
+    2px 4px 8px rgba(0,0,0,0.6),
+    0 0 30px rgba(147,51,234,0.3);
+}
+
+.hero h1 strong {
+  display: block;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+    font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+   text-shadow:
+ 3px 6px 12px rgba(0,0,0,0.7),
+    0 0 50px rgba(147,51,234,0.4),
+    0 0 100px rgba(147,51,234,0.15);
+}
+
+.hero-ctas {
+  margin-top: 2.5rem;
+}
+
+    .hero .badge {
+      display: inline-block;
+      background: rgba(147,51,234,0.15);
+      border: 1px solid rgba(147,51,234,0.4);
+      color: var(--purple);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 20px;
+      margin-bottom: 2.5rem;
+    }
+
+    .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(147, 51, 234, 0.15);
+  border: 1px solid rgba(147, 51, 234, 0.4);
+  color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+}
+
+.badge-dot {
+  display: inline-block;
+  min-width: 8px;
+  min-height: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #9333EA;
+  flex-shrink: 0;
+  animation: onair 2.5s ease-in-out infinite;
+}
+
+@keyframes onair {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.15; }
+}
+
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+   .btn-primary {
+  background: var(--purple);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 8px 24px rgba(147, 51, 234, 0.5);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 14px 32px rgba(147, 51, 234, 0.65);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.2);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  backdrop-filter: blur(8px);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: rgba(255,255,255,0.14);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.4);
+}
+    /* SECTIONS */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--purple);
+      margin-bottom: 1rem;
+    }
+
+    section h2 {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 800;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    /* VIDEO */
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 60px rgba(147,51,234,0.1);
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    #latest-title {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    #latest-title a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    #latest-title a:hover { color: var(--purple); }
+
+    /* LINKS */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .links-grid a {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+
+    .links-grid a:hover {
+      border-color: var(--purple);
+      color: var(--purple);
+      transform: translateY(-2px);
+    }
+
+    .links-grid a .link-label {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.2rem;
+    }
+
+    /* DIVIDER */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--purple); }
+
+    .tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+
   </style>
-  <script>
-    try {
-      Typekit.load({
-        async: true
-      });
-    } catch (e) {}
-  </script>
 </head>
-
 <body>
-    <div class="atable">
-      <div class="Theomilieu">
-        <div class="cabinet">
-            <a href="https://www.youtube.com/@toonesque"><img src="logo.png" alt="toonesque."></a>
-        </div>
-      </div>
-    </div>
-    <footer>
-        <p class="underline"><a href="https://www.youtube.com/@toonesque">YouTube</a> - <a href="https://patreon.com/toonesque/">Patreon</a> - <a href="https://tiktok.com/@toonesque">TikTok</a> - <a href="https://instagram.com/toonesque/">Instagram</a></p>
-        <p class="date">2025 - toonsquad</p>
-    </footer>
-</body>
 
+  <nav>
+     <a href="/" class="logo">toon<span>esque.</span></a>
+     <div class="nav-actions">
+      <a href="about.html" class="cta-secondary"> À propos</a>
+      <a href="mailto:contact@toonesque.com" class="cta-secondary"> Contact</a>
+      <a href="https://youtube.com/@toonesque" target="_blank" class="cta">▶ Voir la chaîne</a>
+  </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="logoc.png" alt="toonesque" class="logo-img tilt-card">
+    <div class="badge">
+  <span class="badge-dot"></span>
+  Troisième Acte — En cours
+</div>
+    <h1>Du cartoonesque sous toutes ses formes.<br><strong>Avec soin et légèreté.</strong></h1>
+    <div class="hero-ctas">
+      <a href="https://youtube.com/@toonesque" target="_blank" class="btn-primary">
+  <i class="fa-brands fa-youtube"></i> YouTube
+</a>
+<a href="https://patreon.com/toonesque" target="_blank" class="btn-secondary">
+  <i class="fa-brands fa-patreon"></i> Soutenir sur Patreon
+</a>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- DERNIÈRE VIDÉO -->
+  <section>
+    <p class="section-label"><i class="fa-solid fa-clapperboard"></i> Dernière vidéo</p>
+    <h2>Ce qu'on regarde en ce moment</h2>
+    <div class="video-wrap">
+      <iframe id="yt-embed"
+        src="https://www.youtube.com/embed?listType=user_uploads&list=toonesque&index=0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <p id="latest-title"></p>
+  </section>
+
+  <hr>
+
+  <!-- LIENS -->
+  <section>
+    <p class="section-label"><i class="fa-solid fa-satellite-dish"></i> Retrouvez-nous</p>
+    <h2>Sur toutes les plateformes</h2>
+    <div class="links-grid">
+      <a href="https://youtube.com/@toonesque" target="_blank">
+  <span class="link-label">Vidéos</span><i class="fa-brands fa-youtube"></i> YouTube
+</a>
+<a href="https://bsky.app/profile/toonesque.com" target="_blank">
+  <span class="link-label">Réseau</span><i class="fa-brands fa-bluesky"></i> Bluesky
+</a>
+<a href="https://twitter.com/toonesque" target="_blank">
+  <span class="link-label">Réseau</span><i class="fa-brands fa-x-twitter"></i> Twitter / X
+</a>
+<a href="https://www.instagram.com/toonesque/" target="_blank">
+  <span class="link-label">Photos</span><i class="fa-brands fa-instagram"></i> Instagram
+</a>
+<a href="https://www.tiktok.com/@toonesque" target="_blank">
+  <span class="link-label">Shorts</span><i class="fa-brands fa-tiktok"></i> TikTok
+</a>
+<a href="http://patreon.com/toonesque" target="_blank">
+  <span class="link-label">Soutien</span><i class="fa-brands fa-patreon"></i> Patreon
+</a>
+<a href="https://ko-fi.com/toonesque/" target="_blank">
+  <span class="link-label">Soutien</span><i class="fa-solid fa-mug-hot"></i> Ko-fi
+</a>
+<a href="mailto:contact@toonesque.com" target="_blank">
+  <span class="link-label">Contact</span>
+  <i class="fa-solid fa-envelope"></i> Mail
+</a>
+
+
+
+    </div>
+  </section>
+
+  <hr>
+
+  <footer>
+    <p>toonesque. est une production <a href="https://cabinet26.com" target="_blank">cabinet26</a> — réalisé par <a href="https://vincentimes.fr" target="_blank">Vince Q.</a></p>
+  </footer>
+
+  <script>
+    // Fetch latest video via rss2json
+    // ⚠️ Remplace CHANNEL_ID par ton vrai ID YouTube (commence par UC...)
+    const CHANNEL_ID = "UC-DJKo-iVb2jI5xLvscb9Ig";
+
+    if (CHANNEL_ID !== "REMPLACE_MOI") {
+      fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`)
+        .then(r => r.json())
+        .then(data => {
+          const video = data.items[0];
+          const id = video.link.split("v=")[1];
+          document.getElementById("yt-embed").src = `https://www.youtube.com/embed/${id}`;
+          document.getElementById("latest-title").innerHTML =
+            `<a href="${video.link}" target="_blank">${video.title}</a>`;
+        })
+        .catch(() => {});
+    }
+  </script>
+
+  <script>
+  // Parallax tvOS
+  document.querySelectorAll('.tilt-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `perspective(600px) rotateY(${x * 20}deg) rotateX(${-y * 20}deg) scale(1.04)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)';
+    });
+  });
+</script>
+
+<script>
+      const logo = document.querySelector('.hero img.logo-img');
+
+      logo.style.transition = 'transform 0.1s ease-out';
+
+      document.addEventListener('mousemove', (e) => {
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        const dx = (e.clientX - cx) / cx;
+        const dy = (e.clientY - cy) / cy;
+
+        logo.style.transform = `
+          perspective(600px)
+          rotateY(${dx * 20}deg)
+          rotateX(${-dy * 20}deg)
+          scale(1.05)
+        `;
+      });
+
+      document.addEventListener('mouseleave', () => {
+        logo.style.transform = 'perspective(600px) rotateY(0) rotateX(0) scale(1)';
+      });
+    </script>
+
+<script>
+  window.addEventListener('scroll', () => {
+  const scroll = window.scrollY;
+  const maxScroll = document.body.scrollHeight - window.innerHeight;
+  const ratio = scroll / maxScroll;
+
+  // assombrissement progressif
+  document.body.style.setProperty('--scroll-dark', `rgba(0,0,0,${ratio * 0.6})`);
+
+  // parallaxe sur le ::before halftone
+  document.querySelector('body').style.setProperty('--parallax-y', `${scroll * 0.3}px`);
+});
+</script>
+</body>
 </html>
