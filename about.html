@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos — toonesque.</title>
+  <meta name="description" content="toonesque, c'est quoi ? La chaîne, l'histoire, les actes, les formats, l'équipe." />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Franklin:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Fredoka:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @font-face {
+      font-family: 'Alte Haas Grotesk';
+      src: url('fonts/AlteHaasGroteskBold.woff2') format('woff2');
+      font-weight: 700;
+    }
+    @font-face {
+      font-family: 'Alte Haas Grotesk';
+      src: url('fonts/AlteHaasGroteskRegular.woff2') format('woff2');
+      font-weight: 400;
+    }
+
+    :root {
+      --purple: #9333EA;
+      --purple-dim: #6B21A8;
+      --bg: #4C1D95;
+      --bg2: #3b1278;
+      --text: #f0f0f0;
+      --muted: #888;
+      --border: #6d28d9;
+      /* saisons */
+      --s1: #F97316;
+      --s1-dim: rgba(249,115,22,0.12);
+      --s1-border: rgba(249,115,22,0.35);
+      --s2: #EAB308;
+      --s2-dim: rgba(234,179,8,0.12);
+      --s2-border: rgba(234,179,8,0.35);
+      --s3: #9333EA;
+      --s3-dim: rgba(147,51,234,0.12);
+      --s3-border: rgba(147,51,234,0.35);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #4a1695; /* entre l'original et le sombre */
+  background-image:
+    radial-gradient(ellipse at center, rgba(70,20,180,0.7) 0%, rgba(35,0,120,0.97) 100%),
+    radial-gradient(circle, rgba(255,255,255,0.18) 1.5px, transparent 1.5px);
+  background-size: cover, 12px 12px;
+      color: var(--text);
+      font-family: 'Helvetica Neue', Inter, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--scroll-dark, rgba(0,0,0,0));
+  pointer-events: none;
+  z-index: 0;
+  transition: background 0.1s;
+}
+
+    nav, section, footer { position: relative; z-index: 1; }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    nav .logo {
+      font-family: 'Alte Haas Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-decoration: none;
+      animation: glitch 3s infinite ease-in-out;
+    }
+    @keyframes glitch {
+      0%   { text-shadow: -1px 0 #ff0000, 1px 0 #00ff00, 0 1px #0000ff; }
+      25%  { text-shadow: 1px 0 #ff0000, 0 1px #00ff00, -1px 0 #0000ff; }
+      50%  { text-shadow: 0 1px #ff0000, -1px 0 #00ff00, 1px 0 #0000ff; }
+      75%  { text-shadow: -1px 1px #ff0000, 1px -1px #00ff00, 0 0 #0000ff; }
+      100% { text-shadow: -1px 0 #ff0000, 1px 0 #00ff00, 0 1px #0000ff; }
+    }
+    .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+    nav a.cta {
+      background: rgba(147,51,234,0.5);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.45rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    nav a.cta:hover { background: rgba(147,51,234,0.75); }
+    nav a.cta-secondary {
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.45rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    nav a.cta-secondary:hover { color: var(--purple); }
+
+    /* PAGE HEADER */
+    .page-header {
+      min-height: 38vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10rem 2rem 4rem;
+    }
+    .page-header h1 {
+      font-family: 'Alte Haas Grotesk', sans-serif;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+    .page-header p {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .section-label {
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--purple);
+      margin-bottom: 1rem;
+    }
+    section h2 {
+      font-family: 'Alte Haas Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 800;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+    section p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+      max-width: 680px;
+    }
+    section p a {
+      color: var(--purple);
+      text-decoration: none;
+    }
+    section p a:hover { text-decoration: underline; }
+
+    /* SAISONS */
+    .saisons {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .saison-card {
+      border-radius: 12px;
+      padding: 1.5rem 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      text-decoration: none;
+      transition: transform 0.15s, filter 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .saison-card:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+    .saison-card.s1 {
+      background: var(--s1-dim);
+      border: 1px solid var(--s1-border);
+    }
+    .saison-card.s2 {
+      background: var(--s2-dim);
+      border: 1px solid var(--s2-border);
+    }
+    .saison-card.s3 {
+      background: var(--s3-dim);
+      border: 1px solid var(--s3-border);
+    }
+
+    .saison-number {
+      font-family: 'Alte Haas Grotesk', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1;
+      flex-shrink: 0;
+      opacity: 0.9;
+    }
+    .saison-card.s1 .saison-number { color: var(--s1); }
+    .saison-card.s2 .saison-number { color: var(--s2); }
+    .saison-card.s3 .saison-number { color: var(--s3); }
+
+    .saison-info { flex: 1; }
+    .saison-info h3 {
+      font-family: 'Alte Haas Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+    .saison-info p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0;
+    }
+    .saison-meta {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .saison-card.s1 .saison-meta { color: var(--s1); }
+    .saison-card.s2 .saison-meta { color: var(--s2); }
+    .saison-card.s3 .saison-meta { color: var(--s3); }
+
+    .saison-arrow {
+      font-size: 1.2rem;
+      opacity: 0.4;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .saison-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(147,51,234,0.15);
+      border: 1px solid rgba(147,51,234,0.4);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.6rem;
+      border-radius: 20px;
+      margin-top: 0.4rem;
+      display: inline-flex;
+    }
+    .saison-badge .dot {
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #9333EA;
+      animation: onair 2.5s ease-in-out infinite;
+    }
+    @keyframes onair {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.15; }
+    }
+
+    /* FORMATS */
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+    .format-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem 1.5rem;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .format-card:hover { border-color: var(--purple); transform: translateY(-2px); }
+
+    .format-logo {
+      font-family: 'Alte Haas Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.15rem;
+      letter-spacing: -0.01em;
+    }
+    .format-logo span { color: var(--purple); }
+
+    .format-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 0.7rem;
+      display: block;
+    }
+    .format-card p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 0;
+      max-width: none;
+    }
+    .format-card a {
+      color: var(--purple);
+      text-decoration: none;
+    }
+
+    /* TEAM */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+    .team-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem 1.8rem;
+      transition: border-color 0.2s;
+    }
+    .team-card:hover { border-color: var(--purple); }
+    .team-name {
+      font-family: 'Alte Haas Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.15rem;
+    }
+    .team-handle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 0.75rem;
+    }
+    .team-card p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0;
+      max-width: none;
+    }
+
+    /* DIVIDER */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--purple); }
+
+    /* désactive les majuscules auto sur les titres de saison */
+.saison-info h3 {
+  text-transform: none;
+}
+
+/* round 2 — Garamond italic */
+.saison-info h3.round2 {
+  font-family: 'Garamond', 'EB Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
+}
+
+/* troisième acte — effet pixelisé */
+.saison-info h3.troisieme-acte {
+  image-rendering: pixelated;
+  filter: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1'/><feDisplacementMap in='SourceGraphic' scale='2'/></filter></svg>#p");
+  font-family: 'Alte Haas Grotesk', sans-serif !important;
+  position: relative;
+  animation: glitch-text 2s infinite ease-in-out !important;
+}
+
+
+@keyframes glitch-text {
+  0%   { text-shadow: none; transform: none; }
+  20%  { text-shadow: -2px 0 #ff0000, 2px 0 #00ff00; transform: translateX(-1px); }
+  40%  { text-shadow: 2px 0 #0000ff, -2px 0 #ff0000; transform: translateX(1px); }
+  60%  { text-shadow: -1px 0 #00ff00, 1px 0 #0000ff; transform: translateX(-1px); }
+  80%  { text-shadow: 1px 0 #ff0000, -1px 0 #00ff00; transform: translateX(2px); }
+  100% { text-shadow: none; transform: none; }
+}
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <div style="display: flex; align-items: center; gap: 0.75rem;">
+    <a href="index.html" class="logo">toon<span>esque.</span></a>
+    <span style="color: rgba(255,255,255,0.25); font-size: 0.85rem;">/ à propos</span>
+  </div>
+  <div class="nav-actions">
+    <a href="mailto:contact@toonesque.com" class="cta-secondary"> Contact
+    </a>
+    <a href="https://youtube.com/@toonesque" target="_blank" class="cta">
+      ▶ Voir la chaîne
+    </a>
+  </div>
+</nav>
+
+
+  <div class="page-header">
+    <h1>À propos</h1>
+    <p>Une chronique cartoonesque depuis 2018</p>
+  </div>
+
+  <hr />
+
+  <!-- LE PROJET -->
+ <section>
+  <p class="section-label"><i class="fa-solid fa-tv"></i> Le projet</p>
+  <h2>C'est quoi toonesque. ?</h2>
+  <p>
+    toonesque. est un média qui fait des émissions sur tout ce qui est cartoonesque — cartoons, séries animées, films d'animation, jeux vidéo, japanimation, culture pop. Avec soin et légèreté.
+  </p>
+  <p>
+  Tout commence vraiment en 2018, avec la surprise du succès d'un épisode pilote consacré au clip de <em>Story of O.J.</em> de Jay-Z. C'est ce signal inattendu qui convainc Vince de lancer le projet pour de bon — inspiré par des formats comme <em>CROSSED</em>, <em>Le Rewind</em> de 20 Minutes, ou le travail des journalistes de <em>Vox</em>.
+</p>
+<p>
+  En se replongeant dans les cartoons pendant une période difficile, Vince retrouve dans ces œuvres quelque chose d'essentiel — et l'envie d'en parler. Pas pour te convaincre de regarder telle ou telle série, mais pour montrer ce qui rend une œuvre d'animation vraiment respectable et appréciable : les ponts qu'elle tisse avec la musique, le jeu vidéo, l'art, la culture pop.
+</p>
+<p>
+  Une démarche qui existait déjà en germe dès l'été 2012, avec une première tentative restée dans les cartons.
+</p>
+  <p>
+    toonesque. fait partie d'un projet plus large, <a href="https://toonsquad.co" target="_blank">TOONSQUAD</a> — une future plateforme de tracking dédiée à l'industrie du cartoon.
+  </p>
+</section>
+
+  <hr />
+
+  <!-- LES SAISONS -->
+  <section>
+    <p class="section-label"><i class="fa-solid fa-film"></i> Histoire</p>
+    <h2>Les trois chapitres</h2>
+
+    <div class="saisons">
+
+      <a href="https://www.youtube.com/playlist?list=PLYP9p4UelR2SiV5Mnkk9zIxNsmgA9I-Av" target="_blank" class="saison-card s1">
+        <div class="saison-number">I</div>
+        <div class="saison-info">
+          <div class="saison-meta">2018</div>
+          <h3>première saison</h3>
+          <p>toonesque original. la chronique la plus cartoonesque.</p>
+        </div>
+        <div class="saison-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </a>
+
+      <a href="https://www.youtube.com/playlist?list=PLYP9p4UelR2SP30I8HLcUbGJzafZ4CNtB" target="_blank" class="saison-card s2">
+        <div class="saison-number">II</div>
+        <div class="saison-info">
+          <div class="saison-meta">2022 — 2024</div>
+          <h3 class="round2">round 2</h3>
+          <p>toonesque. reloaded: la chronique, où l'on aborde une œuvre et on essaie de la rattacher au médium de l'animation, et/ou son influence.</p>
+        </div>
+        <div class="saison-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </a>
+
+      <a href="https://www.youtube.com/playlist?list=PLYP9p4UelR2R36YleSS8DVMLR8At17M_p" target="_blank" class="saison-card s3">
+        <div class="saison-number">III</div>
+        <div class="saison-info">
+          <div class="saison-meta">2025 — en cours</div>
+          <h3 class="troisieme-acte">troisième acte</h3>
+          <p>Premier pour poser les bases, deuxième pour confirmer l'essai, troisième pour imposer le ton.</p>
+          <div class="saison-badge"><span class="dot"></span> En cours</div>
+        </div>
+        <div class="saison-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </a>
+
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- LES FORMATS -->
+  <section>
+    <p class="section-label"><i class="fa-solid fa-shapes"></i> Les formats</p>
+    <h2>toonesque. sous toutes ses formes</h2>
+
+    <div class="formats-grid">
+
+      <div class="format-card">
+        <div class="format-logo">toon<span>esque.</span></div>
+        <span class="format-tag">Chaîne principale</span>
+        <p>La chronique YouTube. Analyses, critiques et explorations de l'animation sous toutes ses formes.</p>
+      </div>
+
+      <div class="format-card">
+        <div class="format-logo"><span>TOONFLAKES</span></div>
+        <span class="format-tag">Shorts</span>
+        <p>toonflakes, c'est l'occasion d'en apprendre, se mettre au courant, ou simplement se divertir, avec un bol de céréales* à proximité! (*facultatif.)</p>
+      </div>
+
+      <div class="format-card">
+        <div class="format-logo">le <span>débrief.</span></div>
+        <span class="format-tag">Podcast / Live</span>
+        <p>Devant la caméra et en live, avec un peu moins de montage et de ligne narrative, on fait un débriefing d'un sujet abordé en vidéo, ou bien... un sujet actuel.</p>
+      </div>
+
+      <div class="format-card">
+        <div class="format-logo"><span>TOONFLASH</span></div>
+        <span class="format-tag">Collab — LUDOKINO</span>
+        <p>En collaboration avec <a href="https://youtube.com/@LDKino" target="_blank">LUDOKINO</a>, une pastille qui recommande les œuvres du moment.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <hr />
+
+  <!-- L'ÉQUIPE -->
+  <section>
+    <p class="section-label"><i class="fa-solid fa-users"></i> L'équipe</p>
+    <h2>Qui fait toonesque. ?</h2>
+
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-name">Vincent Quêne</div>
+        <div class="team-handle">VincenTimes. — Vince Q.</div>
+        <p>Créateur et voix de toonesque. depuis 2018. Convaincu que l'animation mérite mieux qu'un regard condescendant.</p>
+      </div>
+
+      <div class="team-card">
+        <div class="team-name">Sarah H.</div>
+        <div class="team-handle">Productrice</div>
+        <p>À la production depuis 2024 — mais déjà de la partie en 2018 pour aider à l'écriture des premiers épisodes.</p>
+      </div>
+
+    </div>
+
+    <p style="margin-top: 2rem;">
+      toonesque. est une production <a href="https://cabinet26.com" target="_blank">cabinet26</a>.
+    </p>
+  </section>
+
+  <hr />
+
+  <footer>
+    <p>toonesque. est une production <a href="https://cabinet26.com" target="_blank">cabinet26</a> réalisée par <a href="https://vincentimes.fr" target="_blank">Vince Q.</a></p>
+  </footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const scroll = window.scrollY;
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    const ratio = scroll / maxScroll;
+    document.body.style.setProperty('--scroll-dark', `rgba(0,0,0,${ratio * 0.85})`);
+  });
+</script>
+
+</body>
+</html>
