@@ -29,8 +29,8 @@ toonesque-website/
 ├── logoc.png
 ├── og.png
 └── fonts/
-├── AlteHaasGroteskBold.woff2
-└── AlteHaasGroteskRegular.woff2
+  ├── AlteHaasGroteskBold.woff2
+  └── AlteHaasGroteskRegular.woff2
 
 text
 
