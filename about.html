@@ -136,6 +136,94 @@
     }
     nav a.cta-secondary:hover { color: var(--purple); }
 
+    /* ================================================
+   TOONESQUE — NAV MOBILE FIX v2
+   Remplace le CSS nav mobile précédent par celui-ci
+   ================================================ */
+
+/* Bouton hamburger — fond violet foncé + barres blanches */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 0.6rem 0.7rem;
+  z-index: 100;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Croix à l'ouverture */
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 640px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* Dropdown — même style que la nav, fond violet */
+  .nav-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 1rem;
+    /* Remplace par ta variable CSS si tu en as une, ex: var(--nav-bg) */
+    background: #3b1278;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 0.75rem;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    min-width: 200px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    /* PAS de transition ici, géré par la classe .open */
+    z-index: 99;
+  }
+
+  .nav-actions.open {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  /* Liens en blanc lisibles */
+  .nav-actions a {
+    color: #fff !important;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .nav-actions a:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+/* ---- FIX FLASH AU REDIMENSIONNEMENT ---- */
+/* Désactive toutes les transitions pendant le resize */
+.resize-animation-stopper .nav-toggle,
+.resize-animation-stopper .nav-actions {
+  animation: none !important;
+  transition: none !important;
+}
+
     /* PAGE HEADER */
     .page-header {
       min-height: 38vh;
@@ -386,6 +474,70 @@
       max-width: none;
     }
 
+.team-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.team-social:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+
+.team-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.team-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.team-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.team-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.team-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+
+
     /* DIVIDER */
     hr {
       border: none;
@@ -442,23 +594,30 @@
 <body>
 
 <nav>
+  <!-- Logo + breadcrumb groupés -->
   <div style="display: flex; align-items: center; gap: 0.75rem;">
     <a href="index.html" class="logo">toon<span>esque.</span></a>
     <span style="color: rgba(255,255,255,0.25); font-size: 0.85rem;">/ à propos</span>
   </div>
+
+  <!-- Burger -->
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Actions — seulement Contact + Chaîne (pas "À propos", on y est déjà) -->
   <div class="nav-actions">
-    <a href="mailto:contact@toonesque.com" class="cta-secondary"> Contact
-    </a>
-    <a href="https://youtube.com/@toonesque" target="_blank" class="cta">
-      ▶ Voir la chaîne
-    </a>
+    <a href="mailto:contact@toonesque.com" class="cta-secondary">Contact</a>
+    <a href="https://youtube.com/@toonesque" target="_blank" class="cta">▶ Voir la chaîne</a>
   </div>
 </nav>
 
 
   <div class="page-header">
-    <h1>À propos</h1>
-    <p>Une chronique cartoonesque depuis 2018</p>
+    <h1>à propos.</h1>
+    <p>Une chronique cartoonesque depuis 2018.</p>
   </div>
 
   <hr />
@@ -572,30 +731,61 @@
 
     <div class="team-grid">
 
-      <div class="team-card">
-        <div class="team-name">Vincent Quêne</div>
-        <div class="team-handle">VincenTimes. — Vince Q.</div>
-        <p>Créateur et voix de toonesque. depuis 2018. Convaincu que l'animation mérite mieux qu'un regard condescendant.</p>
-      </div>
+<div class="team-card">
+  <div class="team-header">
+    <img src="https://api.dicebear.com/9.x/initials/svg?seed=VQ" alt="Vincent Quêne" class="team-avatar" />
+    <div>
+      <div class="team-name">Vincent Quêne</div>
+  <div class="team-handle">Créateur & Réalisateur</div>
+  </div>
+  </div>
+  <div class="team-socials">
+    <a href="https://instagram.com/vincentimes" target="_blank" class="team-social">
+      <i class="fa-brands fa-instagram"></i> @vincentimes
+    </a>
+    <a href="https://bsky.app/profile/vincentimes.fr" target="_blank" class="team-social">
+      <i class="fa-brands fa-bluesky"></i> @vincentimes.fr
+    </a>
+    <a href="https://twitter.com/vincentimes" target="_blank" class="team-social">
+      <i class="fa-brands fa-x-twitter"></i> @vincentimes
+    </a>
+  </div>
+  <p>Créateur et voix de toonesque. depuis 2018. Convaincu que l'animation mérite mieux qu'un regard condescendant.</p>
+</div>
 
-      <div class="team-card">
-        <div class="team-name">Sarah H.</div>
-        <div class="team-handle">Productrice</div>
-        <p>À la production depuis 2024 — mais déjà de la partie en 2018 pour aider à l'écriture des premiers épisodes.</p>
-      </div>
-
+<div class="team-card">
+  <div class="team-header">
+    <img src="https://api.dicebear.com/9.x/initials/svg?seed=SH" alt="Sarah H." class="team-avatar" />
+    <div>
+      <div class="team-name">Sarah H.</div>
+      <div class="team-handle">Productrice</div>
     </div>
+  </div>
+  <div class="team-socials">
+    <a href="https://instagram.com/nemeia__" target="_blank" class="team-social">
+      <i class="fa-brands fa-instagram"></i> @nemeia__
+    </a>
+  </div>
+  <p>À la production depuis 2024 — mais déjà de la partie en 2018 pour aider à l'écriture des premiers épisodes.</p>
+  <  </div><!-- .team-card Sarah -->
+</div><!-- .team-grid !important -->
 
-    <p style="margin-top: 2rem;">
-      toonesque. est une production <a href="https://cabinet26.com" target="_blank">cabinet26</a>.
-    </p>
-  </section>
+<p style="margin-top: 2rem;">
+  toonesque. est une production <a href="https://cabinet26.com" target="_blank">cabinet26</a> & <a href="https://toonsquad.co" target="_blank">toonsquad</a>.
+</p>
+</section>
+
 
   <hr />
 
   <footer>
-    <p>toonesque. est une production <a href="https://cabinet26.com" target="_blank">cabinet26</a> réalisée par <a href="https://vincentimes.fr" target="_blank">Vince Q.</a></p>
-  </footer>
+  <p>
+    © 2026 
+    <a href="https://cabinet26.com" target="_blank">cabinet26</a> & 
+    <a href="https://toonsquad.co" target="_blank">toonsquad</a>
+  </p>
+</footer>
+
 
 <script>
   window.addEventListener('scroll', () => {
@@ -603,6 +793,36 @@
     const maxScroll = document.body.scrollHeight - window.innerHeight;
     const ratio = scroll / maxScroll;
     document.body.style.setProperty('--scroll-dark', `rgba(0,0,0,${ratio * 0.85})`);
+  });
+</script>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const actions = document.querySelector('.nav-actions');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = actions.classList.toggle('open');
+    toggle.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Ferme si clic ailleurs
+  document.addEventListener('click', (e) => {
+    if (!toggle.contains(e.target) && !actions.contains(e.target)) {
+      actions.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', false);
+    }
+  });
+
+  // FIX : désactive les transitions pendant le redimensionnement
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    document.body.classList.add('resize-animation-stopper');
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      document.body.classList.remove('resize-animation-stopper');
+    }, 300);
   });
 </script>
 

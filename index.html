@@ -130,6 +130,8 @@ nav .logo, h1, h2 {
   color: #fff;
   text-decoration: none;
   animation: glitch 3s infinite ease-in-out;
+   flex-shrink: 0;
+  white-space: nowrap;
 }
 
 @keyframes glitch {
@@ -192,6 +194,93 @@ nav::after {
   height: 24px;
   background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent);
   pointer-events: none;
+}
+/* ================================================
+   TOONESQUE — NAV MOBILE FIX v2
+   Remplace le CSS nav mobile précédent par celui-ci
+   ================================================ */
+
+/* Bouton hamburger — fond violet foncé + barres blanches */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 0.6rem 0.7rem;
+  z-index: 100;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Croix à l'ouverture */
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 640px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* Dropdown — même style que la nav, fond violet */
+  .nav-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 1rem;
+    /* Remplace par ta variable CSS si tu en as une, ex: var(--nav-bg) */
+    background: #3b1278;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 0.75rem;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    min-width: 200px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    /* PAS de transition ici, géré par la classe .open */
+    z-index: 99;
+  }
+
+  .nav-actions.open {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  /* Liens en blanc lisibles */
+  .nav-actions a {
+    color: #fff !important;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .nav-actions a:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+/* ---- FIX FLASH AU REDIMENSIONNEMENT ---- */
+/* Désactive toutes les transitions pendant le resize */
+.resize-animation-stopper .nav-toggle,
+.resize-animation-stopper .nav-actions {
+  animation: none !important;
+  transition: none !important;
 }
 
 
@@ -315,7 +404,7 @@ nav::after {
       justify-content: center;
     }
 
-   .btn-primary {
+.btn-primary {
   background: var(--purple);
   color: #fff;
   text-decoration: none;
@@ -324,12 +413,13 @@ nav::after {
   font-weight: 600;
   font-size: 0.95rem;
   transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 8px 24px rgba(147, 51, 234, 0.5);
+  /* ✅ Même ombre discrète que .btn-secondary */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 14px 32px rgba(147, 51, 234, 0.65);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4);
 }
 
 .btn-secondary {
@@ -471,13 +561,20 @@ nav::after {
 <body>
 
   <nav>
-     <a href="/" class="logo">toon<span>esque.</span></a>
-     <div class="nav-actions">
-      <a href="about.html" class="cta-secondary"> À propos</a>
-      <a href="mailto:contact@toonesque.com" class="cta-secondary"> Contact</a>
-      <a href="https://youtube.com/@toonesque" target="_blank" class="cta">▶ Voir la chaîne</a>
+  <a href="/" class="logo">toon<span>esque.</span></a>
+
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="nav-actions">
+    <a href="about.html" class="cta-secondary">À propos</a>
+    <a href="mailto:contact@toonesque.com" class="cta-secondary">Contact</a>
+    <a href="https://youtube.com/@toonesque" target="_blank" class="cta">▶ Voir la chaîne</a>
   </div>
-  </nav>
+</nav>
 
   <!-- HERO -->
   <div class="hero">
@@ -553,9 +650,14 @@ nav::after {
 
   <hr>
 
-  <footer>
-    <p>toonesque. est une production <a href="https://cabinet26.com" target="_blank">cabinet26</a> — réalisé par <a href="https://vincentimes.fr" target="_blank">Vince Q.</a></p>
-  </footer>
+<footer>
+  <p>
+    © 2026 
+    <a href="https://cabinet26.com" target="_blank">cabinet26</a> & 
+    <a href="https://toonsquad.co" target="_blank">toonsquad</a>
+  </p>
+</footer>
+
 
   <script>
     // Fetch latest video via rss2json
@@ -628,5 +730,35 @@ nav::after {
   document.querySelector('body').style.setProperty('--parallax-y', `${scroll * 0.3}px`);
 });
 </script>
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const actions = document.querySelector('.nav-actions');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = actions.classList.toggle('open');
+    toggle.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Ferme si clic ailleurs
+  document.addEventListener('click', (e) => {
+    if (!toggle.contains(e.target) && !actions.contains(e.target)) {
+      actions.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', false);
+    }
+  });
+
+  // FIX : désactive les transitions pendant le redimensionnement
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    document.body.classList.add('resize-animation-stopper');
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      document.body.classList.remove('resize-animation-stopper');
+    }, 300);
+  });
+</script>
+
 </body>
 </html>
